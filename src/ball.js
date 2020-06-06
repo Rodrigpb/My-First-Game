@@ -1,9 +1,9 @@
 class Ball {
     constructor(ctx) {
         this.ctx = ctx;
-        this.x = 250;
-        this.y = 580;
+        this.x = 200;
         this.r = 10;
+        this.y = 580 - this.r;
     
         this.vx = -1;
         this.vy = -1;
@@ -32,15 +32,16 @@ class Ball {
         this.x += this.vx
         this.y += this.vy
 
-        this._checkCollisions()
+        this.checkCollisions();
+    
       }
 
       isFloor() {
-        // TODO: check if floor
-        return (this.y + this.r >= this.ctx.canvas.height)    
+         return (this.y + this.r >= this.ctx.canvas.height)    
       }
 
-      _checkCollisions() {
+
+      checkCollisions() {
 
         if (this.isFloor()) {
           console.log("Has muerto")
@@ -62,7 +63,13 @@ class Ball {
         if (this.y - this.r <= 0) {
           this.vy *= -1;
         }
-
-
       }
+
+      collide(element) {
+
+        const colX = this.x + this.r > (element.x + element.w) && (this.x + this.r) < element.x;
+        const colY = this.y + this.r > element.y && this.x + this.r < element.x + element.w + this.r
+        console.log(colX && colY);
+        return colX && colY
+       }
 }

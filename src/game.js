@@ -5,8 +5,9 @@ class Game {
         this.tick = 0;
 
         this.ball = new Ball(ctx);
-        this.bricks = new Bricks(ctx)
+        this.bricks = new Bricks(ctx);
         this.racket = new Racket(ctx);
+        
     }
 
     start() {
@@ -15,6 +16,8 @@ class Game {
             this._clear()
             this._draw()
             this._move()
+
+           this._checkBrickCollisions()
             
           }, 1000 / 60);
     }
@@ -33,5 +36,18 @@ class Game {
         this.ball.move();
     }
 
+    _checkBrickCollisions () {
+        
+
+       return this.bricks.bricksWall.some(brick => {
+            return this.ball.collide(brick);
+        })
+
+    }
+
+    _checkRacketCollisions() {
+
+        
+    }
     
 }
