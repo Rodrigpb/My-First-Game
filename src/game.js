@@ -28,9 +28,7 @@ class Game {
     _draw() {
         this.ball.draw();
         this.racket.draw();
-        this.bricks.forEach(brick => {
-            brick.draw();
-        });
+        this.bricks.draw();
     }
 
     _move() {
