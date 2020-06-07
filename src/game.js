@@ -16,8 +16,7 @@ class Game {
             this._clear()
             this._draw()
             this._move()
-
-           this._checkBrickCollisions()
+            this._checkBrickCollisions()
             
           }, 1000 / 60);
     }
@@ -29,7 +28,9 @@ class Game {
     _draw() {
         this.ball.draw();
         this.racket.draw();
-        this.bricks.draw();
+        this.bricks.forEach(brick => {
+            brick.draw();
+        });
     }
 
     _move() {
@@ -38,11 +39,22 @@ class Game {
 
     _checkBrickCollisions () {
         
+      /**   const ball = this.ball;
+        this.bricks.forEach(brick => {
+            const bX = brick.x < ((ball.x) + (ball.r)) && ((brick.x) + (brick.w)) > ball.x + ball.r;
+            const bY = ((brick.y) + (brick.h)) > ball.y + ball.r && brick.y < ((ball.y) + (ball.r));
+            if (bX && bY) {
+                console.log("han chocado!!")
+            }
+        });*/
 
+
+    
        return this.bricks.bricksWall.some(brick => {
             return this.ball.collide(brick);
-        })
+        }) 
 
+    
     }
 
     _checkRacketCollisions() {

@@ -5,8 +5,8 @@ class Ball {
         this.r = 10;
         this.y = 580 - this.r;
     
-        this.vx = -1;
-        this.vy = -1;
+        this.vx = -2;
+        this.vy = -2;
         //this.ay = 1;
     
       }
@@ -67,9 +67,10 @@ class Ball {
 
       collide(element) {
 
-        const colX = this.x + this.r > (element.x + element.w) && (this.x + this.r) < element.x;
-        const colY = this.y + this.r > element.y && this.x + this.r < element.x + element.w + this.r
-        console.log(colX && colY);
+        const colX = this.x + this.r > element.x && (this.x - this.r) < element.x + element.w;
+        const colY = this.y + this.r > element.y && this.y - this.r < element.y + element.h;
+        console.log(colX + " Han chocado X");
+        console.log(colY + " Han chocadoY");
         return colX && colY
-       }
+       } 
 }
