@@ -15,8 +15,9 @@ class Game {
             
             this._clear()
             this._draw()
-            this._move()
             this._checkBrickCollisions()
+            this._checkRacketCollisions()
+            this._move()
             
           }, 1000 / 60);
     }
@@ -46,18 +47,38 @@ class Game {
             }
         });*/
 
-
-    
-       return this.bricks.bricksWall.some(brick => {
+        
+        for (let a = 0; a < this.brickColumn; a++) {
+        
+            for (let b = 0; b < this.brickRow; b++) {
+                     if (this.ball.x + this.ball.r >= brick.x && this.ball.x - this.ball.r < brick.x + brick.w &&
+                         brick.y <= this.ball.y + this.ball.r && brick.y + brick.h >= this.ball.y - this.ball.r) {
+                            console.log("choca ", brick) 
+                            this.ball.checkBricksCollisions(brick);
+                            this.bricks.bricksWall[a][b].status = 0;
+                         }
+                }
+            }
+           /* this.bricks.bricksWall.forEach(bric => {
+                for (var brick of bric) {
+                     if (this.ball.x + this.ball.r >= brick.x && this.ball.x - this.ball.r < brick.x + brick.w &&
+                         brick.y <= this.ball.y + this.ball.r && brick.y + brick.h >= this.ball.y - this.ball.r) {
+                            console.log("choca ", brick) 
+                            this.ball.checkBricksCollisions(brick);
+                            this.bricks.bricksWall[a][b].status = 0;
+                         }
+                }
+            });*/
+        /**return this.bricks.bricksWall.some(brick => {
             return this.ball.collide(brick);
-        }) 
+        }) */ 
 
     
     }
 
     _checkRacketCollisions() {
 
-        
+        this.ball.checkRaquetCollisions(this.racket);
     }
     
 }

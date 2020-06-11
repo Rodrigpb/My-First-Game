@@ -3,11 +3,12 @@ class Ball {
         this.ctx = ctx;
         this.x = 200;
         this.r = 10;
-        this.y = 580 - this.r;
+        this.y = 550 - this.r;
     
         this.vx = -2;
         this.vy = -2;
         //this.ay = 1;
+        this.wall;
     
       }
 
@@ -65,12 +66,44 @@ class Ball {
         }
       }
 
-      collide(element) {
+      checkBricksCollisions(element) {
+        if (this.x + this.r > element.x) {
+          //this.vx *= -1;
+          this.vy *= -1;
+          
+        }
+        
+        if (this.x - this.r < element.x + element.w) {
+          //this.vx *= -1;
+          this.vy *= -1;
+          
+        }
 
-        const colX = this.x + this.r > element.x && (this.x - this.r) < element.x + element.w;
-        const colY = this.y + this.r > element.y && this.y - this.r < element.y + element.h;
-        console.log(colX + " Han chocado X");
-        console.log(colY + " Han chocadoY");
-        return colX && colY
-       } 
+        if (element.y < this.y + this.r) {
+          this.vy *= -1;
+          //this.vx *= -1;
+      
+        } 
+        
+        if (element.y + element.h > this.y - this.r) {
+          this.vy *= -1;
+          //this.vx *= -1;
+        
+        }
+
+      }
+
+      checkRaquetCollisions(element) {
+
+
+        if ((this.y + this.r > element.y) && (this.x + this.r > element.x) && (((this.x - this.r) < (element.x + element.w)))) {
+          if (this.x > (element.x + element.w)/2) {
+            this.vy *= -1;
+            //this.vx *= -1;
+          } else if (this.x < (element.x + element.w)/2) {
+            this.vy *= -1;
+          }
+        } 
+        
+      }
 }

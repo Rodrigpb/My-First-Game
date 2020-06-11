@@ -4,10 +4,11 @@ class Racket {
         this.x = 180;
         this.y = 580;
 
-        this.w = 40;
+        this.w = 80;
         this.h = 10;
 
         this._setListeners();
+
     }
 
     draw() {
@@ -43,4 +44,6 @@ class Racket {
           }
         })
     }
+
+    
 }
