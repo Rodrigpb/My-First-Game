@@ -9,6 +9,7 @@ class Ball {
         this.vy = -2;
         //this.ay = 1;
         this.wall;
+        this.side;
     
       }
 
@@ -33,7 +34,7 @@ class Ball {
         this.x += this.vx
         this.y += this.vy
 
-        this.checkCollisions();
+        this.checkSidesCollisions();
     
       }
 
@@ -42,18 +43,22 @@ class Ball {
       }
 
 
-      checkCollisions() {
-
+      checkSidesCollisions() {
+  
         if (this.isFloor()) {
           console.log("Has muerto")
         }
 
         if (this.x + this.r >= this.ctx.canvas.width) {
           this.vx *= -1
+          this.side = "right";
+          
         }
     
         if (this.x - this.r <= 0) {
           this.vx *= -1
+          this.side = "left";
+         
         }
     
         if (this.y + this.r >= this.ctx.canvas.height) {
@@ -67,43 +72,48 @@ class Ball {
       }
 
       checkBricksCollisions(element) {
-        if (this.x + this.r > element.x) {
-          //this.vx *= -1;
-          this.vy *= -1;
-          
-        }
-        
-        if (this.x - this.r < element.x + element.w) {
-          //this.vx *= -1;
-          this.vy *= -1;
-          
-        }
 
-        if (element.y < this.y + this.r) {
-          this.vy *= -1;
-          //this.vx *= -1;
-      
-        } 
+        if (element.status === 1) {
+          if (this.x + this.r > element.x && this.x - this.r < element.x + element.w &&
+            element.y < this.y + this.r && element.y + element.h > this.y - this.r) {
+           
+          
+           if (this.x + this.r > element.x && this.x - this.r < element.x + element.w ) {
+            this.vx *= -1;
+            
+        //     this.vy *= -1;
+            
+           } else if(element.y < this.y + this.r && element.y + element.h > this.y - this.r) {
+             this.vy *= -1;
+        //     //this.vx *= -1;
         
-        if (element.y + element.h > this.y - this.r) {
-          this.vy *= -1;
-          //this.vx *= -1;
-        
-        }
-
+           }
+           return true;
+        // }
+            }
+          }
       }
 
       checkRaquetCollisions(element) {
 
-
         if ((this.y + this.r > element.y) && (this.x + this.r > element.x) && (((this.x - this.r) < (element.x + element.w)))) {
-          if (this.x > (element.x + element.w)/2) {
-            this.vy *= -1;
-            //this.vx *= -1;
-          } else if (this.x < (element.x + element.w)/2) {
-            this.vy *= -1;
-          }
-        } 
-        
+          if (this.side === "right") {
+            if (this.x > (element.x + element.w)/2) {
+              this.vy *= -1;
+              this.vx *= -1;
+            } else {
+              this.vy *= -1;
+            }
+          }  else if (this.side === "left") {
+            if (this.x < (element.x + element.w)/2){
+              this.vy *= -1;
+              this.vx *= -1;
+            } else {
+              this.vy *= -1;
+            }
+        } else {
+          this.vy *= -1;
+        }
       }
+    }
 }
