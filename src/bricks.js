@@ -1,17 +1,17 @@
 class Bricks {
     constructor(ctx) {
         this.ctx = ctx;
-        this.x = 0;
-        this.y = 0;
+        this.x = 20;
+        this.y = 20;
 
-        this.w = 50;
-        this.h = 10;
+        this.w = 80;
+        this.h = 30;
 
-        this.brickRow = 10;
-        this.brickColumn = 6;
+        this.brickRow = 5;
+        this.brickColumn = 7;
 
         this.padding = 10;
-        this.brickLeft = 30;
+        this.brickLeft = 40;
         this.brickTop = 30;
 
         this.damageX = 3;
@@ -21,9 +21,19 @@ class Bricks {
         this.briksinit = false;
     }
 
-    createBrick() {
-
+    
+    _randomColor() {
+        return Math.random() * 255;
     }
+    
+    _randomRgb() {
+        const r = this._randomColor()
+        const g = this._randomColor()
+        const b = this._randomColor()
+
+        return `rgb(${r}, ${g}, ${b})`
+    }
+    
 
 
     draw() {
@@ -43,7 +53,7 @@ class Bricks {
                     this.bricksWall[a][b].h = this.h;
                     ctx.beginPath();
                     ctx.rect(brickX, brickY, this.w, this.h);
-                    ctx.fillStyle = "red";
+                    ctx.fillStyle = this._randomRgb();
                     ctx.fill();
                     ctx.closePath();
                 }
@@ -74,7 +84,7 @@ class Bricks {
                         this.bricksWall[a][b].h = this.h;
                         ctx.beginPath();
                         ctx.rect(brickX, brickY, this.w, this.h);
-                        ctx.fillStyle = "red";
+                        ctx.fillStyle = this._randomRgb();
                         ctx.fill();
                         ctx.closePath();
                     }  

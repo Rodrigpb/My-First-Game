@@ -2,13 +2,13 @@ class Game {
     constructor(ctx) {
         this.ctx = ctx;
         this.intervalId = null;
-        this.tick = 0;
+        
 
         this.ball = new Ball(ctx);
         this.bricks = new Bricks(ctx);
         this.racket = new Racket(ctx);
-        
-        this.score = new Score(ctx);
+        this.background = new Background(ctx);
+        this.score = 0;
     }
 
     start() {
@@ -28,10 +28,11 @@ class Game {
       }
 
     _draw() {
+        this.background.draw();
         this.ball.draw();
         this.racket.draw();
         this.bricks.draw();
-        this.score.draw();
+       // this.score.draw();
     }
 
     _move() {
@@ -43,12 +44,13 @@ class Game {
             for (let b = 0; b < this.bricks.brickRow; b++) {
                     const isCollide = this.ball.checkBricksCollisions(this.bricks.bricksWall[a][b]);
                     if(isCollide){
+                        console.log(this.bricks.bricksWall[a][b]);
                         this.bricks.bricksWall[a][b].status = 0;
                         this.score += 10;
+                        document.getElementById("score-number").innerHTML = this.score;
                     }   
                 }
             }
-            console.log(this.score);
     }
 
     _checkRacketCollisions() {
