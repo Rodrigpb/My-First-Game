@@ -84,11 +84,6 @@ class Ball {
           }
       }
 
-
-
-      
-
-
       checkRaquetCollisions(element) {
         if ((this.x + this.r) >= element.x && (this.x - this.r) <= (element.x + element.w) && (this.y + this.r) >= element.y && (this.y - this.r) <= (element.y + element.h)) {
           

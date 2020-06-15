@@ -27,7 +27,7 @@ class Racket {
        document.addEventListener("mousemove", mouse => {
          let position = mouse.x - this.ctx.canvas.offsetLeft;
           if (position > 0  && position <= this.ctx.canvas.width) {
-              this.x = mouse.x - 100;
+              this.x = position - 100;
           }
        })
      }
