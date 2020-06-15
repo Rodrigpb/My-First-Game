@@ -3,7 +3,6 @@ class Game {
         this.ctx = ctx;
         this.intervalId = null;
         
-
         this.ball = new Ball(ctx);
         this.bricks = new Bricks(ctx);
         this.racket = new Racket(ctx);
@@ -36,6 +35,7 @@ class Game {
     }
 
     _move() {
+        this.racket.move();
         this.ball.move();
     }
 
@@ -49,8 +49,8 @@ class Game {
                         this.score += 10;
                         document.getElementById("score-number").innerHTML = this.score;
                     }   
-                }
             }
+        }
     }
 
     _checkRacketCollisions() {

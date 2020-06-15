@@ -4,7 +4,7 @@ const game = new Game(ctx)
 
 game.start()
 
-window.onload = () => {
+//window.onload = () => {
 
 	// const preLoad = new Image ();
 	// preLoad.src = "./img/Arkanoid-Cover.jpg";
@@ -33,4 +33,4 @@ window.onload = () => {
 	// 		}
 	// 	}
 	// }
-};
+//};

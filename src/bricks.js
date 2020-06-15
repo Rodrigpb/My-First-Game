@@ -34,8 +34,6 @@ class Bricks {
         return `rgb(${r}, ${g}, ${b})`
     }
     
-
-
     draw() {
 
         if (this.briksinit === false) {   
@@ -91,15 +89,6 @@ class Bricks {
                }
             }
         }
-    
-
-        
-
-
-
-    }
-
-  
-    
+    } 
 }
 

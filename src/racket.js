@@ -8,17 +8,7 @@ class Racket {
         this.h = 15;
         this.v = 5;
 
-        //this._setListeners();
-        this.move = function () {
-          window.addEventListener('mousemove', function (e) {
-            document.getElementById('x-value').textContent = e.x;
-            document.getElementById('y-value').textContent = e.y;
-        });
-        }
-
-
         this.img = new Image()
-
         this.img.src = './img/racket.png';
     }
 
@@ -33,26 +23,14 @@ class Racket {
       )
     }
 
-    // draw() {
-    //   canvas.drawImage(imagenes, 16, 47, 16, 8, this.x, this.y, this.anchoBloque, this.altoBloque);
-    //     this.ctx.fillStyle = '#000000';
-    //     this.ctx.fillRect(
-    //         this.x,
-    //         this.y,
-    //         this.w,
-    //         this.h
-    //       );
-    //       this.ctx.fill();
-    // }
-
-
-    // move() {
-    //   if(mouseX > this.x) {
-    //     this.x += this.v;
-    //   } else if (mouseX < this.x) {
-    //     this.x -= this.v;
-    //   }
-    // }
+     move() {
+       document.addEventListener("mousemove", mouse => {
+         let position = mouse.x - this.ctx.canvas.offsetLeft;
+          if (position > 0  && position <= this.ctx.canvas.width) {
+              this.x = mouse.x - 100;
+          }
+       })
+     }
 
     // _setListeners() {
     //     document.addEventListener('keydown', arrow => {
